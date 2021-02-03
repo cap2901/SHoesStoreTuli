@@ -1,0 +1,64 @@
+﻿@model CoV.Service.DataModel.ProductDesciptionViewModel
+@{
+    ViewBag.Title = "title";
+    Layout = "_AdminLayout";
+}
+
+<div class="row">
+    <!-- left column -->
+    <div class="col-md-12">
+        <!-- general form elements -->
+        <div class="card card-primary">
+            <div class="card-header">
+                <h3 class="card-title">Tạo mô tả sản phẩm</h3>
+            </div>
+            <!-- /.card-header -->
+            <!-- form start -->
+            <form enctype="multipart/form-data"  asp-controller="Product" asp-action="Description" method="post">
+                <div class="card-body">
+                     <div class="row">
+                    <div class="col-12">
+                        @*<span asp-validation-for="Name" class="text-danger"></span>*@
+                 
+                        <div class="form-group">
+                            <label >Mô tả sản phẩm</label>
+                            @* <input class="form-control" placeholder="Mô tả"  > *@
+                            <textarea  placeholder="Mô tả sản phẩm"
+                          style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;" asp-for="Description"></textarea>
+                        </div> 
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div style="text-align: center">
+                            <button type="submit" class="btn btn-primary">Tạo/Cập nhật mô tả sản phẩm </button>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="col-md-6"></div>
+</div>
+
+@section Scripts
+{
+    <script>
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    $('#blah').attr('src', e.target.result);
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        };
+
+        $("#imgInp").change(function() {
+            readURL(this);
+        });
+    </script>
+}

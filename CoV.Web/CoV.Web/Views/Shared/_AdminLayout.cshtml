@@ -1,0 +1,697 @@
+﻿<!DOCTYPE html>
+<html>
+@Html.Partial("_head")
+<body class="hold-transition sidebar-mini layout-fixed">
+<div class="wrapper">
+
+  <!-- Navbar -->
+<nav class="main-header navbar navbar-expand navbar-white navbar-light" >
+	<!-- Left navbar links -->
+	<ul class="navbar-nav" >
+		<li class="nav-item">
+			<a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+		</li>
+		
+	</ul>
+
+	<!-- Right navbar links -->
+	<ul class="navbar-nav ml-auto">
+		<!-- Messages Dropdown Menu -->
+		<li class="nav-item dropdown">
+			<a class="nav-link" data-toggle="dropdown" href="#">
+				<i class="far fa-comments"></i>
+				<span class="badge badge-danger navbar-badge">3</span>
+			</a>
+			<div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+				<a href="#" class="dropdown-item">
+					<!-- Message Start -->
+					<div class="media">
+						<img src="~/dist/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
+						<div class="media-body">
+							<h3 class="dropdown-item-title">
+								Brad Diesel
+								<span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span>
+							</h3>
+							<p class="text-sm">Call me whenever you can...</p>
+							<p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+						</div>
+					</div>
+					<!-- Message End -->
+				</a>
+				<div class="dropdown-divider"></div>
+				<a href="#" class="dropdown-item">
+					<!-- Message Start -->
+					<div class="media">
+						<img src="~/dist/img/user8-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
+						<div class="media-body">
+							<h3 class="dropdown-item-title">
+								John Pierce
+								<span class="float-right text-sm text-muted"><i class="fas fa-star"></i></span>
+							</h3>
+							<p class="text-sm">I got your message bro</p>
+							<p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+						</div>
+					</div>
+					<!-- Message End -->
+				</a>
+				<div class="dropdown-divider"></div>
+				<a href="#" class="dropdown-item">
+					<!-- Message Start -->
+					<div class="media">
+						<img src="~/dist/img/user3-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
+						<div class="media-body">
+							<h3 class="dropdown-item-title">
+								Nora Silvester
+								<span class="float-right text-sm text-warning"><i class="fas fa-star"></i></span>
+							</h3>
+							<p class="text-sm">The subject goes here</p>
+							<p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+						</div>
+					</div>
+					<!-- Message End -->
+				</a>
+				<div class="dropdown-divider" ></div>
+				<a asp-controller="Admin" asp-action="MailBox" class="dropdown-item dropdown-footer">Tất cả</a>
+			</div>
+		</li>
+		<!-- Notifications Dropdown Menu -->
+		<li class="nav-item dropdown">
+			<a class="nav-link" data-toggle="dropdown" href="#">
+				<i class="far fa-bell"></i>
+				<span class="badge badge-warning navbar-badge">15</span>
+			</a>
+			<div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+				<span class="dropdown-item dropdown-header">15 Notifications</span>
+				<div class="dropdown-divider"></div>
+				<a href="#" class="dropdown-item">
+					<i class="fas fa-envelope mr-2"></i> 4 new messages
+					<span class="float-right text-muted text-sm">3 mins</span>
+				</a>
+				<div class="dropdown-divider"></div>
+				<a href="#" class="dropdown-item">
+					<i class="fas fa-users mr-2"></i> 8 friend requests
+					<span class="float-right text-muted text-sm">12 hours</span>
+				</a>
+				<div class="dropdown-divider"></div>
+				<a href="#" class="dropdown-item">
+					<i class="fas fa-file mr-2"></i> 3 new reports
+					<span class="float-right text-muted text-sm">2 days</span>
+				</a>
+				<div class="dropdown-divider"></div>
+				<a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
+			</div>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#">
+				<i class="fas fa-th-large"></i>
+			</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link" data-slide="true" asp-action="Logout" asp-controller="Account">
+				<i class="fas fa-sign-out-alt"></i>
+			</a>
+		</li>
+	</ul>
+</nav>
+  <!-- /.navbar -->
+
+  <!-- Main Sidebar Container -->
+  <aside class="main-sidebar sidebar-dark-primary elevation-4" >
+    <!-- Brand Logo -->
+    <a asp-controller="Product" asp-action="GetAll" class="brand-link" style="text-align: center; background-color: #00bfff; padding: 7px 0px 7px 0px" >
+	    <h3>TULISTORE</h3>
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <!-- Sidebar user panel (optional) -->
+      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <div class="image">
+          <img src="~/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+        </div>
+        <div class="info">
+          <a href="#" class="d-block">@Context.User.Identity.Name</a>
+        </div>
+      </div>
+
+      <!-- Sidebar Menu -->
+      <nav class="mt-2" >
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+        <li class="nav-item has-treeview">
+            <a href="#" class="nav-link active">
+                <i class="fas fa-clinic-medical"></i>
+                <p style="color: white">
+                    Trang chủ
+                    <i class="right fas fa-angle-left"></i>
+                </p>
+            </a>
+            <ul class="nav nav-treeview">
+                <li class="nav-item" >
+                    <a  asp-controller="Home" asp-action="Home" class="nav-link ">
+                        <p>Home Bitits</p>
+                    </a>
+                </li>
+            </ul>
+        </li>
+            
+            
+            <li class="nav-item has-treeview">
+            <a href="#" class="nav-link active">
+                <i class="fas fa-coins"></i>
+
+              <p style="color: white">
+                Sản phẩm 
+                  <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+	            <li class="nav-item" >
+		            <a  asp-controller="Product" asp-action="GetAll" class="nav-link ">
+			            <p>Danh mục  </p>
+		            </a>
+	            </li>
+	            <li class="nav-item" >
+		            <a  asp-controller="ProductDetails" asp-action="GetAll" class="nav-link ">
+			            <p>Danh sách sản phẩm chi tiết </p>
+		            </a>
+	            </li>
+              <li class="nav-item">
+                <a  asp-controller="Product" asp-action="CreateOrUpdate" class="nav-link">
+                  <p>Tạo mới/đăng sản phẩm</p>
+                </a>
+              </li>
+              @* <li class="nav-item"> *@
+              @*   <a asp-controller="Product" asp-action="CreateOrUpdate" class="nav-link"> *@
+              @*     <p>Tạo mới/Cập nhật sản phẩm</p> *@
+              @*   </a> *@
+              @* </li> *@
+            </ul>
+          </li>
+          
+          
+	        <li class="nav-item has-treeview">
+		        <a href="#" class="nav-link active">
+			        <i class="fas fa-cart-plus"></i>
+                
+			        <p style="color: white">
+				        Đơn hàng  
+				        <i class="fas fa-angle-left right"></i>
+			        </p>
+		        </a>
+		        <ul class="nav nav-treeview">
+			        <li class="nav-item" >
+				        <a  asp-controller="OrderDetals" asp-action="Index" class="nav-link ">
+					        <p>Quản lý đơn hàng </p>
+				        </a>
+			        </li>
+			        
+			        <li class="nav-item" >
+				        <a  asp-controller="OrderDetals" asp-action="Ferfect" class="nav-link ">
+					        <p>Đơn giao thành công</p>
+				        </a>
+			        </li>
+			        <li class="nav-item">
+				        <a asp-controller="OrderDetals" asp-action="Loading" class="nav-link">
+					        <p>Đơn vị vận chuyển</p>
+				        </a>
+			        </li>
+			        <li class="nav-item">
+				        <a  asp-controller="OrderDetals" asp-action="Return" class="nav-link">
+					        <p>Đơn hoàn hàng</p>
+				        </a>
+			        </li>
+			        
+		        </ul>
+	        </li>
+	        
+        <li class="nav-item has-treeview">
+	        <a href="#" class="nav-link active">
+		        <i class="fas fa-dolly"></i>
+                
+		        <p style="color: white">
+			        Shiper 
+			        <i class="fas fa-angle-left right"></i>
+		        </p>
+	        </a>
+	        <ul class="nav nav-treeview">
+		        <li class="nav-item">
+			        <a  asp-controller="Shiper" asp-action="NhanHang" class="nav-link ">
+				        <p>Nhận </p>
+			        </a>
+		        </li>
+		        <li class="nav-item" >
+			        <a  asp-controller="Shiper" asp-action="DangGiao" class="nav-link ">
+				        <p>Đơn đang vận chuyển</p>
+			        </a>
+		        </li>
+		        <li class="nav-item">
+			        <a  asp-controller="Shiper" asp-action="Giaothanhcong" class="nav-link">
+				        <p>Đơn hoàn thành</p>
+			        </a>
+		        </li>
+		        <li class="nav-item">
+			        <a asp-controller="Shiper" asp-action="ShiperSalary" class="nav-link">
+				        <p>Thu nhập cá nhân</p>
+			        </a>
+		        </li>
+	        </ul>
+        </li>
+          
+	        <li class="nav-item has-treeview">
+            <a href="#" class="nav-link active">
+                <i class="fas fa-dollar-sign"></i>
+              <p style="color: white">
+                Thanh toán   
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a asp-controller="Product" asp-action="GetAll" class="nav-link ">
+                  <p>Sao kê </p>
+                </a>
+              </li>
+              <li class="nav-item" >
+                <a  asp-controller="Product" asp-action="GetAll" class="nav-link ">
+                  <p>Giao dịch </p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link active">
+                <i class="far fa-list-alt"></i>
+              <p style="color: white">
+                Thống kê  
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item" >
+                <a  asp-controller="Statistical" asp-action="index" class="nav-link ">
+                  <p>Thông tin bán  hàng </p>
+                </a>
+              </li>
+              <li class="nav-item" >
+                <a  asp-controller="Product" asp-action="GetAll" class="nav-link ">
+                  <p>KPI cửa hàng </p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link active">
+                <i class="fas fa-ad"></i>
+              <p style="color: white">
+                Quảng cáo 
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item" >
+                <a  asp-controller="Product" asp-action="GetAll" class="nav-link ">
+                  <p>Quảng cáo  sản phẩm </p>
+                </a>
+              </li>
+              <li class="nav-item" >
+                <a  asp-controller="Product" asp-action="GetAll" class="nav-link ">
+                  <p>Danh sách giảm giá</p>
+                </a>
+              </li>
+              <li class="nav-item" >
+                <a  asp-controller="Product" asp-action="GetAll" class="nav-link ">
+                  <p>Chương trình khuyến mai</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          
+          
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link active">
+             <i class="far fa-address-card"></i> 
+              <p style="color: white">
+                Quản lý tài khoản 
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item" >
+                <a  asp-controller="Account" asp-action="Index" class="nav-link ">
+                  <p>Danh sách tài khoản </p>
+                </a>
+              </li>
+              <li class="nav-item" >
+                <a  asp-controller="Account" asp-action="CreateOrUpdate" class="nav-link ">
+                  <p>Tạo tài khoản quản trị </p>
+                </a>
+              </li>
+              <li class="nav-item" >
+                <a  asp-controller="Customer" asp-action="GetAll" class="nav-link ">
+                  <p>Tài khoản khách hàng </p>
+                </a>
+              </li>
+            </ul>
+          </li>
+        
+        <li class="nav-item has-treeview">
+	        <a href="#" class="nav-link active">
+		        <i class="far fa-address-card"></i> 
+		        <p style="color: white">
+			        MailBox
+			        <i class="fas fa-angle-left right"></i>
+		        </p>
+	        </a>
+	        <ul class="nav nav-treeview">
+		        <li class="nav-item" >
+			        <a  asp-controller="Admin" asp-action="MailBox" class="nav-link ">
+				        <p> Inbox </p>
+			        </a>
+		        </li>
+		        <li class="nav-item" >
+			        <a  asp-controller="Account" asp-action="CreateOrUpdate" class="nav-link ">
+				        <p>Read </p>
+			        </a>
+		        </li>
+	        </ul>
+        </li>
+        
+        </ul>
+      </nav>
+      <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+  </aside>
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        @RenderBody()
+      </div><!-- /.container-fluid -->
+      @if (IsSectionDefined("Scipts"))
+      {
+        @RenderSection("Scripts",required :true )
+      }
+    </div>
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+    
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+  
+  
+<footer class="footer">
+<div class="container p-0">
+<div class="top-footer">
+	<div class="row">
+		<div class="col-md-3">
+			<h3 class="title">
+				Trợ giúp
+			</h3>	
+			<div class="list-link">
+				<ul>
+					<li>
+						<a href="#">
+							<i class="fas fa-chevron-right"></i>
+							Trạng thái đơn hàng
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<i class="fas fa-chevron-right"></i>
+							Hình thức giao hàng
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<i class="fas fa-chevron-right"></i>
+							Hình thức thanh toán
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<i class="fas fa-chevron-right"></i>
+							Chính sách đổi trả
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<i class="fas fa-chevron-right"></i>
+							Chính sách bảo hành
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<i class="fas fa-chevron-right"></i>
+							Chính sách khách hàng thân thiết
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="col-md-3">
+			<h3 class="title">
+				Thông tin
+			</h3>
+			<div class="list-link">
+				<ul>
+					<li>
+						<a href="#">
+							<i class="fas fa-chevron-right"></i>
+							Tuyển Dụng
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<i class="fas fa-chevron-right"></i>
+							Hệ thống cửa hàng
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<i class="fas fa-chevron-right"></i>
+							Liên hệ hợp tác
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<i class="fas fa-chevron-right"></i>
+							Q&A
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="col-md-3">
+			<h3 class="title">
+				Về chúng tôi
+			</h3>
+			<div class="list-link">
+				<ul>
+					<li>
+						<a href="#">
+							<i class="fas fa-chevron-right"></i>
+							Về Bitis
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<i class="fas fa-chevron-right"></i>
+							Câu chuyện Biti's
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<i class="fas fa-chevron-right"></i>
+							Bước tiến phát triển
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<i class="fas fa-chevron-right"></i>
+							Hoạt Động
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<i class="fas fa-chevron-right"></i>
+							Liên hệ
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="col-md-3">
+			<h3 class="title">
+				Liên hệ với chúng tôi
+			</h3>
+			<div class="list-contact">
+				<ul>
+					<li>
+						<div class="icon">
+							<i class="fas fa-map-marker-alt"></i>
+						</div>
+						<div class="text">
+							<h4 class="title-text">
+								ADDRESS
+							</h4>
+							<div class="dt-txt">
+								Minh Khai - Bắc Từ Liêm - Hà Nội
+							</div>
+						</div>
+					</li>
+
+					<li>
+						<div class="icon">
+							<i class="fas fa-mobile"></i>
+						</div>
+						<div class="text">
+							<h4 class="title-text">
+								PHONE
+							</h4>
+							<div class="dt-txt">
+								0965319086 (24/7 Support Line)
+							</div>
+						</div>
+					</li>
+
+					<li>
+						<div class="icon">
+							<i class="fas fa-fax"></i>
+						</div>
+						<div class="text">
+							<h4 class="title-text">
+								FAX
+							</h4>
+							<div class="dt-txt">
+								(123) 123-4567
+							</div>
+						</div>
+					</li>
+
+					<li>
+						<div class="icon">
+							<i class="fas fa-envelope"></i>
+						</div>
+						<div class="text">
+							<h4 class="title-text">
+								EMAIL
+							</h4>
+							<div class="dt-txt">
+								Chuonghvc2901@gmail.com
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="bot-footer">
+	<div class="row align-items-center justify-content-center">
+		<div class="col-md-4">
+			<ul class="list-ft">
+				<li>
+					<a href="#">
+						Điều khoản
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						Chính sách bảo mật
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						Hướng dẫn sử dụng
+					</a>
+				</li>
+			</ul>
+		</div>
+		<div class="col-md-4">
+			<div class="img-ddk">
+				<img src="~/Frontend/images/Da-dang-ky-bo-cong-thuong.png" alt="">
+			</div>
+		</div>
+		<div class="col-md-4">
+			<div>
+				Giấy CNĐKDN: 0301340497 được cấp ngày 20/01/1992,
+				được sửa đổi lần thứ 20 ngày 28/12/2015 bởi Sở Kế hoạch và Đầu tư TPHCM
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+</footer>
+
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+  </aside>
+  <!-- /.control-sidebar -->F
+</div>
+<!-- ./wrapper -->
+
+<!-- jQuery -->
+
+
+<script src="~/plugins/jquery/jquery.min.js"></script>
+<!-- jQuery UI 1.11.4 -->
+<script src="~/plugins/jquery-ui/jquery-ui.min.js"></script>
+<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+<script>
+    $.widget.bridge('uibutton', $.ui.button)
+</script>
+<!-- Bootstrap 4 -->
+<script src="~/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- ChartJS -->
+<script src="~/plugins/chart.js/Chart.min.js"></script>
+<!-- Sparkline -->
+<script src="~/plugins/sparklines/sparkline.js"></script>
+<!-- JQVMap -->
+<script src="~/plugins/jqvmap/jquery.vmap.min.js"></script>
+<script src="~/plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
+<!-- jQuery Knob Chart -->
+<script src="~/plugins/jquery-knob/jquery.knob.min.js"></script>
+<!-- daterangepicker -->
+<script src="~/plugins/moment/moment.min.js"></script>
+<script src="~/plugins/daterangepicker/daterangepicker.js"></script>
+<!-- Tempusdominus Bootstrap 4 -->
+<script src="~/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+<!-- Summernote -->
+<script src="~/plugins/summernote/summernote-bs4.min.js"></script>
+<!-- overlayScrollbars -->
+<script src="~/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+<!-- AdminLTE App -->
+<script src="~/dist/js/adminlte.js"></script>
+<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+<script src="~/dist/js/pages/dashboard.js"></script>
+
+<!-- Bootstrap 4 -->
+<script src="~/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- ChartJS -->
+<script src="~/plugins/chart.js/Chart.min.js"></script>
+<!-- AdminLTE App -->
+<script src="~/dist/js/adminlte.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="~/dist/js/demo.js"></script>
+<!-- page script -->
+<!-- AdminLTE for demo purposes -->
+<script src="~/dist/js/demo.js"></script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
+
+
+@RenderSection("Scripts", required: false)
+</body>
+</html>

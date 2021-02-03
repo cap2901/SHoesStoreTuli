@@ -1,0 +1,68 @@
+2020-05-24 00:52:30.395 +07:00 [Error] login with acoount not pound
+2020-05-24 00:52:39.840 +07:00 [Error] login with acoount not pound
+2020-05-24 00:52:48.476 +07:00 [Error] Login with account :user@gmail.com
+2020-05-24 00:52:54.514 +07:00 [Error]  Error 401
+2020-05-24 00:53:00.920 +07:00 [Error]  Error 401
+2020-05-24 00:53:03.980 +07:00 [Error]  Error 401
+2020-05-24 00:55:03.875 +07:00 [Error]  Error 401
+2020-05-24 00:55:08.887 +07:00 [Error]  Error 401
+2020-05-24 15:59:14.794 +07:00 [Error] Login with account :admin@gmail.com
+2020-05-24 15:59:39.071 +07:00 [Error] Login with account :shipper@gmail.com
+2020-05-24 15:59:42.141 +07:00 [Error]  Error 401
+2020-05-24 15:59:46.970 +07:00 [Error]  Error 401
+2020-05-24 15:59:50.281 +07:00 [Error]  Error 401
+2020-05-24 16:01:55.733 +07:00 [Error]  Error 404
+2020-05-24 16:03:17.809 +07:00 [Error]  Error 404
+2020-05-24 16:03:20.740 +07:00 [Error]  Error 404
+2020-05-24 16:03:23.772 +07:00 [Error]  Error 404
+2020-05-24 16:03:31.840 +07:00 [Error]  Error 404
+2020-05-24 16:04:18.945 +07:00 [Error]  Error 401
+2020-05-24 16:04:22.505 +07:00 [Error]  Error 401
+2020-05-24 16:04:29.592 +07:00 [Error]  Error 401
+2020-05-24 16:04:41.737 +07:00 [Error]  Error 401
+2020-05-24 16:05:11.571 +07:00 [Error] Login with account :user@gmail.com
+2020-05-24 16:05:19.507 +07:00 [Error]  Error 401
+2020-05-24 16:10:50.592 +07:00 [Error]  Error 401
+2020-05-24 16:10:53.123 +07:00 [Error]  Error 401
+2020-05-24 16:21:38.985 +07:00 [Error] Login with account :employee@gmail.com
+2020-05-24 16:23:18.648 +07:00 [Error] Login with account :admin@gmail.com
+2020-05-24 16:23:50.839 +07:00 [Error] Login with account :user@gmail.com
+2020-05-24 16:24:17.351 +07:00 [Error] Login with account :employee@gmail.com
+2020-05-24 16:25:13.693 +07:00 [Error] An unhandled exception has occurred while executing the request.
+System.ArgumentNullException: Value cannot be null.
+Parameter name: entity
+   at Microsoft.EntityFrameworkCore.Utilities.Check.NotNull[T](T value, String parameterName)
+   at Microsoft.EntityFrameworkCore.DbContext.Remove[TEntity](TEntity entity)
+   at Microsoft.EntityFrameworkCore.Internal.InternalDbSet`1.Remove(TEntity entity)
+   at CoV.Service.Repository.GenericRepository`1.Delete(T entity) in /home/cap/Desktop/ShoesStore/CoV.Web/CoV.Service/Repository/GenericRepository.cs:line 91
+   at CoV.Service.Service.OrderDetailsService.Delete(Int32 id) in /home/cap/Desktop/ShoesStore/CoV.Web/CoV.Service/Service/ProductService/OrderDetailsService.cs:line 140
+   at CoV.Web.Controllers.OrderDetalsController.Delete(Int32 id) in /home/cap/Desktop/ShoesStore/CoV.Web/CoV.Web/Controllers/OrderDetalsController.cs:line 73
+   at lambda_method(Closure , Object , Object[] )
+   at Microsoft.Extensions.Internal.ObjectMethodExecutor.Execute(Object target, Object[] parameters)
+   at Microsoft.AspNetCore.Mvc.Internal.ActionMethodExecutor.SyncActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeNextActionFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Rethrow(ActionExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeInnerFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResourceFilter()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResourceExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeFilterPipelineAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeAsync()
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Routing.EndpointRoutingMiddleware.Invoke(HttpContext httpContext)
+   at CoV.Web.Infrastructure.Middleware.PageAccessdenied.Invoke(HttpContext context) in /home/cap/Desktop/ShoesStore/CoV.Web/CoV.Web/Infrastructure/Middleware/PageAccessdenied.cs:line 19
+   at CoV.Web.Infrastructure.Middleware.PageNotFound.Invoke(HttpContext context) in /home/cap/Desktop/ShoesStore/CoV.Web/CoV.Web/Infrastructure/Middleware/PageNotFound.cs:line 25
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2020-05-24 16:29:19.371 +07:00 [Error]  Error 404
+2020-05-24 16:30:18.617 +07:00 [Error]  Error 404
+2020-05-24 16:30:24.436 +07:00 [Error]  Error 404
+2020-05-24 16:31:04.440 +07:00 [Error]  Error 404
+2020-05-24 16:31:53.638 +07:00 [Error] Login with account :shipper@gmail.com
+2020-05-24 16:32:09.266 +07:00 [Error]  Error 404
+2020-05-24 16:32:15.517 +07:00 [Error]  Error 401

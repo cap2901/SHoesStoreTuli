@@ -1,0 +1,183 @@
+﻿@model IEnumerable<CoV.Service.DataModel.OrderDetailsViewModel>
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_AdminLayout";
+}
+
+<div class="row">
+    <div class="col-12">
+        <h1 style="text-align: center">
+            <a asp-controller="OrderDetals" asp-action="Index">Danh sách đơn hàng </a>
+        </h1>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-12 table-responsive">
+        <table id="ShowClass" class="table table-bordered table-hover">
+            <thead class="thead-light">
+            <tr style="background-color: darkgrey">
+                <td >Tên khách hàng </td>
+                <td >Số điện thoại </td>
+                <td >Danh sách sản phẩm </td>
+                <td >Số lượng</td>
+                <td > Tổng tiền </td>
+                <td >Địa chỉ</td>
+                <td >Ngày đặt</td>
+                <td >Trạng thái</td>
+                <td style="text-align: center">Chi tiết</td>
+                <td >Xuất hóa đơn</td>
+                <td style="text-align: center">Xóa</td>
+            </tr>
+
+            <tbody>
+            @foreach (var item in Model)
+            {
+                <tr style="text-align: center">
+                    <td >@item.NameCustomer</td>
+                    <td >@item.PhoneNumber</td>
+                    <td >@item.NameProduct</td>
+                    <td >@item.NumberProduct SP</td>
+                    <td >@item.TotalMoney</td>
+                    <td >@item.Address</td>
+                    <td >@item.CreateDate</td>
+                    
+                    <td style="color: blue">
+                        <button id="@item.Id" class=" btn btn-primary status">@item.StatusOrder.Status </button>
+                    </td>
+                    <td style="text-align: center">
+                        <a class="btn btn-success " asp-controller="OrderDetals" asp-action="ShowDetails" asp-route-id="@item.Id"><i class="far fa-address-card"></i> </a>
+                        @*<button type="button" id="@item.Id" class="btn btn-primary details"  data-toggle="modal" data-target="#modal-default">
+                            Chi tiết...
+                        </button>*@
+                    </td>
+                    <td >
+                        <a class="btn btn-danger " asp-controller="Home" asp-action="TemplateInvoid" asp-route-id="@item.Id">
+                            <i class="fas fa-print"></i>
+                        </a>
+                    </td>
+                    <td style="text-align: center">
+                        <a class="btn btn-primary " asp-controller="OrderDetals" asp-action="DeleteOrder" asp-route-id="@item.Id">
+                            <i style="color: red" class="fas fa-trash-alt"></i>
+                        </a>
+                    </td>
+                </tr>
+            }
+            </tbody>
+            </thead>
+        </table>
+    </div>
+</div>
+
+
+@*
+<div class="modal fade" id="modal-default" >
+    <div class="modal-dialog" >
+        <div class="modal-content" style="width: 150%">
+            <div class="modal-header"  >
+                <h4 class="modal-title">Danh sách chi tiết</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" >
+                <table class="table table-striped projects">
+                    <thead>
+                    <tr>
+                        <th style="width: 50%;">
+                            Tên sản phẩm
+                        </th>
+                        <th style="width: 10%;">
+                            Size
+                        </th>
+                        <th style="width: 20%;">
+                            Số lượng
+                        </th>
+
+                        <th style="width: 20%;" >
+                            Tổng giá
+                        </th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td style="text-align: center">
+                            a
+                        </td>
+                        <td style="text-align: center">
+                            a
+                        </td>
+                        <td style="text-align: center">
+                            a
+                        </td >
+                        <td style="text-align: center" >
+                            a
+                        </td>
+
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer justify-content-between">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                $1$ <button type="button" class="btn btn-primary">Save changes</button> #1#
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+*@
+
+@section Scripts{
+    <script type="text/javascript">
+        /*$('.details').click(function(e) {
+            e.preventDefault();
+            var id = e.target.id;
+
+            $.ajax({
+                url: '@Url.Action("ShowDetails", "OrderDetals")',
+                type: "GET",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                data: { 'id': id },
+                async: true,
+                cache: false,
+                success: function(result) {
+                    alert(result
+                    );
+                }
+            });
+        });*/
+
+        $(document).ready(function() {
+            $(".status").on('click',
+                function(e) {
+                    e.preventDefault();
+                    //id order
+                    var id = e.target.id;
+
+                    $.ajax({
+                        url: '@Url.Action("UpdateStatus", "OrderDetals")',
+                        type: "GET",
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        data: { 'id': id },
+                        async: true,
+                        cache: false,
+                        success: function() {
+                            $('#' + id).text("Đang chờ Shipper");
+                            $('#' + id).css("background-color", "red");
+                        }
+                    });
+                });
+            $('#ShowClass').DataTable();
+            $('.dataTables_empty').text("Danh sách rỗng");
+            $('.next').text("Trang tiếp");
+            $('.previous').text("Trang trước");
+
+        });
+    </script>
+
+}

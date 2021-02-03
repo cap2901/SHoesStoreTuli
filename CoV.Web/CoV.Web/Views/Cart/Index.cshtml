@@ -1,0 +1,221 @@
+﻿@using CoV.Service.DataModel
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_FrontEndLayout";
+    var cart = (IEnumerable<CartViewModel>) ViewBag.cart;
+    var i = cart.Count();
+    var totalPrice = 0;
+    var a = 1;
+    var b = 0;
+    var size = 0;
+    var total = 0;
+    var shownumber = 0;
+    var color = (List<ColorProductViewModel>) ViewBag.color;
+}
+
+<div class="nen-mo"></div>
+<div class="hop-thoai">
+    <i style="font-size: 120px; color: #00bfa5; padding-left: 35%; margin-top: 5%; margin-bottom: 5%; opacity: 1;" class="far fa-check-circle "></i>
+    <h3 style="color: white;">Sản phẩm được thêm vào giỏ hàng</h3>
+</div>
+
+
+<section class='cart'>
+    <div class='container p-0'>
+        <div class='row'>
+            <div class="col-md-12">
+                <h2 class="title-page">
+                    Giỏ hàng của @Context.Session.GetString("SessionName")
+                </h2>
+            </div>
+            <div class='col-md-12'>
+                <div class='list-cart table'>
+
+                    <table class="text-center">
+                        <thead>
+                        <tr>
+                            <th>STT</th>
+                            <th>Ảnh sản phẩm</th>
+                            <th>Tên sản phẩm</th>
+                            <th>Giá</th>
+                            <th>Size</th>
+                            <th>Số lượng</th>
+                            <th>Thành tiền</th>
+                            <th>Thao tác</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach (var  item in cart)
+                        {
+                            <td hidden>
+                                @(i = i - 1);
+                                @(a = 100000)
+                                @(a = a + @item.Id)
+                                @(@total = 1000000)
+                                @(total = total + @item.Id)
+                                @(@shownumber= 1000000000)
+                                @(shownumber = shownumber + @item.Id)
+                            </td>
+                            <tr class='item-cart' id="cart_customer">
+                                <td>
+                                    @(cart.Count() - i)
+                                </td>
+                                <td>
+                                    <img src='~/Images/@item.Product.AvatarDetails'>
+                                </td>
+                                <td class='w-300px'>@item.Product.Name</td>
+                                <td >
+                                    <p id="@a">@item.Product.PriceNew </p>
+                                </td>
+                               
+
+                                <td class='w-200px'>
+                                    <form action='#' class='form-update-cart'>
+                                        @* <input style="border: 0px solid;" class="QuantitySize"  id="@size" min="34" max="46" type='number' value='@item.Size'step="1" onkeyup=" this.value = this.value.replace(/[^0-9]/g, '')"> *@
+                                        <b>@item.Size</b>
+                                        
+                                    </form>
+                                </td>
+                             
+                                <td class='w-200px'>
+                                    <form action='#' class='form-update-cart'>
+                                        <input class="Quantity" id="@item.Id" min="1" type='number' value='@item.Quantity' step="1" onkeyup=" this.value = this.value.replace(/[^0-9]/g, '')">
+                                        <input id="product_id" type='number' value='@item.Product.Id' hidden>
+                                        <button class='up-qty'  type='button'>
+                                            <i class='fas fa-plus'></i>
+                                        </button>
+                                        <button class='down-qty' type='button'>
+                                            <i class='fas fa-minus'></i>
+                                        </button>
+                                    </form>
+                                    <div style="color: red"  id="@shownumber"></div>
+                                </td>
+                                
+                                <td class="@item.Id"> @item.TotalPrice</td>
+                                <td>
+                                    <a class="btn-open" asp-action="Remove" asp-controller="Cart" asp-route-id="@item.Id"  >
+                                        <button class='btn-danger' type='button'>
+                                            <i class='fas fa-trash'></i>
+                                        </button>
+                                    </a>
+                                </td>
+                               
+                            </tr>
+                        }
+                        <tr>
+                            <td class='text-right' colspan='5'>
+                                <h3 id="100">Tổng hóa đơn:</h3>
+                            </td>
+
+                            @foreach (var  item in cart)
+                            {
+                                totalPrice += item.TotalPrice;
+                            }
+                            <td colspan='5'>
+                                <h3 id="formatpriceHidden" hidden> @totalPrice</h3>
+                                <h3 id="formatprice"> @totalPrice</h3>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class='text-right' colspan='5'>
+                                <div class='row justify-content-end'>
+                                    <a class='to-checkout' asp-action="Home" asp-controller="Home">
+                                        Tiếp tục mua hàng
+                                    </a>
+                                </div>
+                            </td>
+                           
+                            <td colspan='9'>
+                                <div class='row justify-content-end'>
+                                    <a class='to-checkout' asp-action="Checkout02" asp-controller="Checkout02">
+                                        Thanh toán
+                                    </a>
+                                </div>
+                            </td>
+
+                        </tr>
+                      
+                     
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts
+{
+    <script>
+        // giam so luong don hang
+        $(document).ready(function() {
+//            thay doi so san pham : susscess
+            $(".Quantity").on('keyup click  mouseleave',
+                function(e) {
+                    e.preventDefault();
+                    var id = $(this).attr('id');
+                    var quantity = parseInt($(this).val());
+                    var price = $('#' + (100000 + parseInt(id))).html();
+                    //id product
+                    var idProduct = e.target.id;
+                    $.ajax({
+                        url: '@Url.Action("EditQuantityMouseleave", "Cart")',
+                        type: "GET",
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        data: { 'id': id , 'quantity': quantity },
+                        async: true,
+                        cache: false,
+                        success: function(resuls) {
+                            $("#" + (parseInt(id) + 1000000000)).text('còn '+ resuls.quantitys + ' sản phẩm');
+                            if (quantity > resuls.quantitys) {
+                                alert("hiện sản phẩm không đủ, vui lòng chọn lại");
+                            }
+                            if (quantity <= 0 || id.isNullOrUndef) {
+                                $('.' + id).text(0);
+                            } else {
+                                var prices = (quantity * price) ;
+                                var priceOuts = parseInt(prices).toLocaleString();
+                                $('.'+ id).text(priceOuts);
+                                
+                            }
+                            var priceTotal = parseInt(resuls.totalprict) ;
+                            var priceOut = parseInt(priceTotal).toLocaleString();
+                            $("#formatprice").text(priceOut + " VND");
+                            
+                        }
+                    });
+                });
+
+            
+            
+//            $(".QuantitySize").on('keyup click change mouseleave',
+//                function(e) {
+//                    e.preventDefault();
+//                    var id = parseInt($(this).val());
+//                    //id product
+//                    var idProduct = e.target.id;
+//                    $.ajax({
+//                        url: '@Url.Action("EditSizeMouseleave", "Cart")',
+//                        type: "GET",
+//                        contentType: "application/json; charset=utf-8",
+//                        dataType: "json",
+//                        data: { 'id': idProduct, 'size': id },
+//                        async: true,
+//                        cache: false,
+//                        success: function() {
+//                            $(this).val(id);
+//                        }
+//                    });
+//                });
+//            
+
+            //format jquery format number to currency
+           
+            var price = $("#formatprice").html();
+            var priceOut = parseInt(price).toLocaleString();
+            $("#formatprice").text(priceOut + " VND");
+        });
+    </script>
+}

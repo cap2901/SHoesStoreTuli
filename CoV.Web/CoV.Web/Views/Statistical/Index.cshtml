@@ -1,0 +1,312 @@
+﻿@{
+    ViewBag.Title = "title";
+    Layout = "_AdminLayout";
+    var numberProduct = (int)ViewBag.numberProduct;
+    var totalMoneyotalMoney = (int)ViewBag.TotalMoney;
+    var orderCount = (int)ViewBag.orderCount;
+    // so san pham 
+    var salary = (int) ViewBag.salary;
+    var january= ViewBag.january;
+    var february=  ViewBag.february;
+    var march=   ViewBag.march;
+    var april=  ViewBag.april;
+    var may=   ViewBag.may;
+    var june=  ViewBag.June;
+    var july=  ViewBag.July;
+    var august=  ViewBag.august;
+    var september=  ViewBag.september;
+    var october=  ViewBag.october;
+    var november=  ViewBag.november;
+    var december=  ViewBag.december;
+   // doanh thu theo thangvar salary = (int) ViewBag.salary;
+    var januaryTotal= ViewBag.januaryTotal;
+    var februaryTotal=  ViewBag.februaryTotal;
+    var marchTotal =   ViewBag.marchTotal;
+    var aprilTotal=  ViewBag.aprilTotal;
+    var mayTotal =   ViewBag.mayTotal;
+    var juneTotal =  ViewBag.JuneTotal;
+    var julyTotal =  ViewBag.JulyTotal;
+    var augustTotal =  ViewBag.augustTotal;
+    var septemberTotal =  ViewBag.septemberTotal;
+    var octoberTotal =   ViewBag.octoberTotal;
+    var novemberTotal =  ViewBag.novemberTotal;
+    var decemberTotal=  ViewBag.decemberTotal;
+     
+}
+ <div class="row">
+          <div class="col-md-3 col-sm-6 col-12">
+            <div class="info-box">
+              <span class="info-box-icon bg-info"><i class="far fa-envelope"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text">Số Sản phẩm bán được</span>
+                <span class="info-box-number">@numberProduct</span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+          </div>
+          <!-- /.col -->
+          <div class="col-md-3 col-sm-6 col-12">
+            <div class="info-box">
+              <span class="info-box-icon bg-success"><i class="far fa-flag"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text">Số đơn hàng thành công</span>
+                <span class="info-box-number">@orderCount</span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+          </div>
+          <!-- /.col -->
+          <div class="col-md-3 col-sm-6 col-12">
+            <div class="info-box">
+              <span class="info-box-icon bg-warning"><i class="far fa-copy"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text">Tổng doanh thu </span>
+                <span class="info-box-number" id="formatprice">@totalMoneyotalMoney</span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+          </div>
+          <!-- /.col -->
+          <div class="col-md-3 col-sm-6 col-12">
+            <div class="info-box">
+              <span class="info-box-icon bg-danger"><i class="far fa-star"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text">Số tiền Shipper</span>
+                <span class="info-box-number" id="formatsalary">@salary</span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+          </div>
+          <!-- /.col -->
+        </div>
+
+    
+<div class="row">
+    <div class="col-md-6">
+        <div class="card card-success">
+            <div class="card-header">
+                <h3 class="card-title">Biểu đồ doanh số bán hàng</h3>
+
+                <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                        <i class="fas fa-minus"></i>
+                    </button>
+                    <button type="button" class="btn btn-tool" data-card-widget="remove">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="card-body">
+                
+                <div class="chart">
+                    <canvas id="barChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+                </div>
+            </div>
+            <!-- /.card-body -->
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card card-danger">
+            <div class="card-header">
+                <h3 class="card-title">Tổng sản phẩm bán theo tháng</h3>
+
+                <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
+                    </button>
+                    <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
+                </div>
+            </div>
+            <div class="card-body">
+                <canvas id="donutChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+            </div>
+            <!-- /.card-body -->
+        </div>
+    </div>
+    
+</div>
+
+<div class="row">
+     <div class="col-md-12">
+            <!--  -->
+            <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">Tổng doanh thu theo từng tháng</h3>
+
+                <div class="card-tools">
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
+                  </button>
+                  <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
+                </div>
+              </div>
+              <div class="card-body">
+                <div class="chart">
+                  <canvas id="areaChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+                </div>
+              </div>
+              <!-- /.card-body -->
+            </div>
+          </div>
+
+</div>
+
+@section Scripts
+{
+    <script>
+        var areaChartData = {
+            labels  : ['Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 3', 'Tháng 5 ', 'Tháng 6', 'Tháng 7', 'Tháng 8', 'Tháng 9','Tháng 10', 'Tháng 11', 'Tháng 12'],
+            datasets: [
+                {
+                    label               : 'Năm nay',
+                    backgroundColor     : 'rgba(60,141,188,0.9)',
+                    borderColor         : 'rgba(60,141,188,0.8)',
+                    pointRadius          : false,
+                    pointColor          : '#3b8bba',
+                    pointStrokeColor    : 'rgba(60,141,188,1)',
+                    pointHighlightFill  : '#fff',
+                    pointHighlightStroke: 'rgba(60,141,188,1)',
+                    data                : [@januaryTotal,@februaryTotal,@marchTotal,@aprilTotal,@mayTotal,@juneTotal,@julyTotal,@augustTotal,@septemberTotal,@octoberTotal,@novemberTotal,@decemberTotal]
+                },
+                {
+                    label               : 'Năm trước',
+                    backgroundColor     : 'rgba(210, 214, 222, 1)',
+                    borderColor         : 'rgba(210, 214, 222, 1)',
+                    pointRadius         : false,
+                    pointColor          : 'rgba(210, 214, 222, 1)',
+                    pointStrokeColor    : '#c1c7d1',
+                    pointHighlightFill  : '#fff',
+                    pointHighlightStroke: 'rgba(220,220,220,1)',
+                    data                : [65000000, 59000000, 800000000, 810000000, 560000000, 550000000, 400000000,650000000, 590000000, 800000000, 810000000, 560000000, 550000, 400000000]
+                },
+            ]
+        }
+        
+        var barChartCanvas = $('#barChart').get(0).getContext('2d');
+        var barChartData = jQuery.extend(true, {}, areaChartData);
+        var temp0 = areaChartData.datasets[0];
+        var temp1 = areaChartData.datasets[1];
+
+        barChartData.datasets[0] = temp1;
+        barChartData.datasets[1] = temp0;
+        
+
+        var barChartOptions = {
+            responsive              : true,
+            maintainAspectRatio     : false,
+            datasetFill             : false
+        }
+
+        var barChart = new Chart(barChartCanvas,
+            {
+                type: 'bar',
+                data: barChartData,
+                options: barChartOptions
+            });
+        
+        //-------------
+        //- DONUT CHART -
+        //-------------
+        // Get context with jQuery - using jQuery's .get() method.
+        var donutChartCanvas = $('#donutChart').get(0).getContext('2d')
+        var donutData        = {
+            labels: [
+                'Tháng 1', 
+                'Tháng 2', 
+                'Tháng 3', 
+                'Tháng 4', 
+                'Tháng 5', 
+                'Tháng 6', 
+                'Tháng 7', 
+                'Tháng 8', 
+                'Tháng 9', 
+                'Tháng 10', 
+                'Tháng 11', 
+                'Tháng 12', 
+              
+            ],
+            datasets: [
+                {
+                    data: [@january,@february,@march,@april,@may,@june,@july,@august,@september,@october,@november,@december],
+                    backgroundColor : ['#f56954', '#00a65a', '#f39c12', '#00c0ef', '#3c8dbc', '#d2d6de','#64FE2E','#819FF7','#FF0000','#181407','#2A0A0A','#2E2EFE'],
+                }
+            ]
+        }
+        var donutOptions     = {
+            maintainAspectRatio : false,
+            responsive : true,
+        }
+        //Create pie or douhnut chart
+        // You can switch between pie and douhnut using the method below.
+        var donutChart = new Chart(donutChartCanvas, {
+            type: 'doughnut',
+            data: donutData,
+            options: donutOptions      
+        })
+        
+        
+        //--------------
+        //- AREA CHART -
+        //--------------
+
+        // Get context with jQuery - using jQuery's .get() method.
+        var areaChartCanvas = $('#areaChart').get(0).getContext('2d')
+
+        var areaChartData = {
+            labels  : ['Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 3', 'Tháng 5 ', 'Tháng 6', 'Tháng 7', 'Tháng 8', 'Tháng 9','Tháng 10', 'Tháng 11', 'Tháng 12'],
+            datasets: [
+                {
+                    label               : 'Digital Goods',
+                    backgroundColor     : 'rgba(60,141,188,0.9)',
+                    borderColor         : 'rgba(60,141,188,0.8)',
+                    pointRadius          : false,
+                    pointColor          : '#3b8bba',
+                    pointStrokeColor    : 'rgba(60,141,188,1)',
+                    pointHighlightFill  : '#fff',
+                    pointHighlightStroke: 'rgba(60,141,188,1)',
+                    data                : [@januaryTotal,@februaryTotal,@marchTotal,@aprilTotal,@mayTotal,@juneTotal,@julyTotal,@augustTotal,@septemberTotal,@octoberTotal,@novemberTotal,@decemberTotal]
+                },
+              
+            ]
+        }
+
+        var areaChartOptions = {
+            maintainAspectRatio : false,
+            responsive : true,
+            legend: {
+                display: false
+            },
+            scales: {
+                xAxes: [{
+                    gridLines : {
+                        display : false,
+                    }
+                }],
+            }
+        }
+
+        // This will get the first returned node in the jQuery collection.
+        var areaChart = new Chart(areaChartCanvas,
+            {
+                type: 'line',
+                data: areaChartData,
+                options: areaChartOptions
+            });
+
+        var price = $("#formatprice").html();
+        var priceOut = parseInt(price).toLocaleString();
+        $("#formatprice").text(priceOut + " VND");
+        
+        var price2 = $("#formatsalary").html();
+        var priceOut2 = parseInt(price2).toLocaleString();
+        $("#formatsalary").text(priceOut2 + " VND");
+        
+        
+    </script>
+}

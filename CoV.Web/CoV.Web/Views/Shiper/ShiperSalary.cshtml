@@ -1,0 +1,63 @@
+﻿@using CoV.Service.DataModel
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_AdminLayout";
+    var ship = (ShipperSalaryViewModel)ViewBag.ship;
+}
+
+ <div class="row">
+        <div class="col-12">
+            <h1 style="text-align: center" ><a  asp-controller="Shiper" asp-action="ShiperSalary">Thu nhập vận chuyển hàng </a></h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 table-responsive">
+            <table  id="ShowClass" class="table table-bordered table-hover">
+                <thead class="thead-light">       
+                <tr style="background-color: darkgrey">
+                    <td >Tên shipper </td>
+                    <td >Số sản phẩm </td>
+                    <td >Tổng số đơn</td>
+                    <td  >Số tiền</td>
+                    <td > Tiền ship </td>
+                    <td style="text-align: center">Thanh Toán</td>
+                </tr>
+                
+                <tbody>
+                    <tr style="text-align: center" > 
+                        <td >@ship.Name</td>
+                        <td >@ship.TotalProduct</td>
+                        <td >@ship.TotalOrder</td>
+                        <td  id="TotalMoney">@ship.TotalMoney</td>
+                        <td  id="TotalShip">@ship.TotalShip </td>
+                        <td style="text-align: center">Chờ thanh toán</td>
+                    </tr> 
+                </tbody>
+                </thead>
+            </table>
+        </div>
+    </div>
+
+
+@section Scripts{
+    <script>    
+        $(document).ready(function() {
+            $('#ShowClass').DataTable();
+            $('.dataTables_empty').text("Danh sách rỗng");
+            $('.next').text("Trang tiếp");
+            $('.previous').text("Trang trước");
+            
+            
+            var price = $("#TotalMoney").html();
+            var priceOut = parseInt(price).toLocaleString();
+            $("#TotalMoney").text(priceOut + " VND");
+        
+            var price1 = $("#TotalShip").html();
+            var priceOut1 = parseInt(price1).toLocaleString();
+            $("#TotalShip").text(priceOut1 + " VND");
+        });
+    </script>
+
+}
+

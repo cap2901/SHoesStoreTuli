@@ -1,0 +1,645 @@
+﻿@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1" name="viewport">
+	<title>Trang Chủ</title>
+    <link rel="stylesheet" href="~/Frontend/css/template.css">
+    <link rel="stylesheet" href="~/Frontend/css/style.css">
+    <link rel="stylesheet" href="~/Frontend/css/owl.css">
+    <link rel="stylesheet" href="~/Frontend/css/font-icon.css">
+    <link rel="stylesheet" href="~/Frontend/css/font-arsenal.css">
+	<link rel="stylesheet" href="~/Frontend/css/animate.css">
+
+	<link rel="stylesheet" href="~/Frontend/css/thumbnail-slider.css">
+	<link rel="stylesheet" href="~/Frontend/css/ninja-slider.css">
+	
+	<link rel="stylesheet" href="~/Frontend/css/dialog_modal.css">
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+
+</head>
+<body>
+<header>
+	<div class="container p-0">
+		<div class="row align-items-center">
+
+			<div class="col-md-8">
+				<ul class="">
+					<li>
+						<a  asp-controller="Home"  asp-action="About" >
+							Giới thiệu
+						</a>
+					</li>
+					<li>
+						<a id="contact"  @* asp-action="Contact"  asp-controller="Home"*@>
+							Liên hệ
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							Tin tức sự kiện
+						</a>
+					</li>
+							
+				</ul>
+			</div>
+			<div class="col-md-4">
+				<ul class="justify-content-end">
+					<li id="login_Customer">
+						<a asp-controller="Customer" asp-action="LoginCustomer">
+							<i class="fas fa-sign-in-alt"></i>
+							Đăng nhập 
+						</a>
+					</li>
+					<li id="Create_Customer" >
+						<a asp-controller="Customer" asp-action="CreateAndUpdate">
+							<i class="fas fa-sign-out-alt"></i>
+							Đăng ký
+						</a>
+					</li>
+					<li id="logout-Customer" >
+						<a asp-controller="Customer" asp-action="Logout">
+							<i class="fas fa-sign-out-alt"></i>
+							Đăng xuất
+						</a>
+					</li>
+					<li  id="icon-customer">
+						<a asp-controller="" asp-action="">
+							<i class="fas fa-user-cog"></i>
+							@Context.Session.GetString("SessionName")
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</header>
+<nav class="main_menu" id="main_menu" style="height: 50px">
+			<div class="container p-0">
+				<div class="row align-items-center">
+					<div class="col-md-2" style="height: 53px">
+						<div class="logo">
+							<a asp-controller="Home" asp-action="Home">
+								@* <img src="~/Frontend/images/my-logo.png" alt=""> *@
+								<img src="~/Frontend/images/frondlogo.jpg"  alt="">
+								@* <img src="~/Images/logo.png" width="50px" height="150px"  alt=""> *@
+							</a>
+						</div>
+					</div>
+					<div class="col-md-8">
+						<ul class="ul_main">
+							<li class="active">
+								<a  asp-controller="Home" asp-action="Home">
+									TRANG CHỦ
+								</a>
+							</li>
+							<li>
+								<a asp-controller="Product" asp-action="GetAllMale">
+									GIÀY NAM 
+								</a>
+								<ul class="ul_sub">
+									<li>
+										<a asp-controller="Product" asp-action="GetAllShoeLong">Giày Cao Cổ</a>
+									</li>
+									<li>
+										<a asp-controller="Product" asp-action="GetAllShoesDa">Giày da</a>
+									</li>
+									<li>
+										<a asp-controller="Product" asp-action="GetAllShoeSporst">Giày thể thao</a>
+									</li>
+								</ul>
+								
+							</li>
+							<li>
+								<a asp-controller="Product" asp-action="GetAllFemale">
+									GIÀY NỮ
+								</a>
+								<ul class="ul_sub">
+									<li>
+										<a asp-controller="Product" asp-action="GetAllShoeLong" >Giày cao cổ</a>
+									</li>
+									<li>
+										<a asp-controller="Product" asp-action="GetAllShoesCs" >Giày công sở</a>
+									</li>
+								</ul>
+								
+							</li>
+							<li>
+								<a asp-controller="Product" asp-action="GetAllBaby">
+									GIÀY TRẺ EM 
+								</a>
+								<ul class="ul_sub">
+									<li>
+										<a asp-controller="Product" asp-action="GetAllShoesBabyLovely" >Đáng yêu</a>
+									</li>
+									<li>
+										<a asp-controller="Product" asp-action="GetAllShoesBabyStyle" >Phong cách</a>
+									</li>
+								</ul>
+								
+							</li>
+							<li>
+								<a asp-controller="Product" asp-action="GetAllShoeSporst">
+									GIÀY THỂ THAO 
+								</a>
+							</li>
+							<li>
+								<a asp-controller="Product" asp-action="GetAllShoesCs">
+									GIÀY CÔNG SỞ
+								</a>
+							</li>
+							<li class="control_search">
+								<a href="javascript:void(0)">
+									<i class="fas fa-search"></i>
+								</a>
+							</li>
+						</ul>
+					</div>
+
+					<div class="col-md-2">
+						<ul class="ul_main justify-content-end">
+							<li>
+								<a asp-controller="OrderDetals" asp-action="CartCustomer" >
+									<i class="fas fa-ambulance"></i>
+								</a>
+							</li>
+							<li>
+								<a  asp-controller="Cart" asp-action="Index">
+									<i class="fas fa-shopping-cart"></i>
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="search">
+					<div class="row justify-content-center">
+						<div class="col-md-12">
+							<form asp-action="Search" method="get" asp-controller="Product" class="form-search" >
+								<div class="form-group">
+									<input class="form-control" type="text" placeholder="Tìm kiếm"  name="input"  />
+									<button class="btn-search" type="submit">
+										<i class="fas fa-search"></i>
+									</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+				
+			</div>
+		</nav>
+		
+		<nav class="main_menu" id="fixed_menu">
+			<div class="container p-0">
+				<div class="row align-items-center">
+					<div class="col-md-2">
+						<div class="logo">
+							<a asp-controller="Home" asp-action="Home">
+								<img src="~/Frontend/images/frondlogo.jpg"  alt="">
+								@* <img src="~/Images/logo.png" width="50px" height="150px"  alt=""> *@
+							</a>
+						</div>
+					</div>
+					<div class="col-md-8">
+						<ul class="ul_main">
+							<li class="active">
+								<a  asp-controller="Home" asp-action="Home">
+									TRANG CHỦ
+								</a>
+							</li>
+							<li>
+								<a asp-controller="Product" asp-action="GetAllMale">
+									GIÀY NAM 
+								</a>
+								<ul class="ul_sub">
+									<li>
+										<a asp-controller="Product" asp-action="GetAllShoeLong">Giày Cao Cổ</a>
+									</li>
+									<li>
+										<a asp-controller="Product" asp-action="GetAllShoesDa">Giày da</a>
+									</li>
+									<li>
+										<a asp-controller="Product" asp-action="GetAllShoeSporst">Giày thể thao</a>
+									</li>
+								</ul>
+								
+							</li>
+							<li>
+								<a asp-controller="Product" asp-action="GetAllFemale">
+									GIÀY NỮ
+								</a>
+								<ul class="ul_sub">
+									<li>
+										<a asp-controller="Product" asp-action="GetAllShoeLong" >Giày cao cổ</a>
+									</li>
+									<li>
+										<a asp-controller="Product" asp-action="GetAllShoesCs" >Giày công sở</a>
+									</li>
+								</ul>
+								
+							</li>
+							<li>
+								<a asp-controller="Product" asp-action="GetAllBaby">
+									GIÀY TRẺ EM 
+								</a>
+								<ul class="ul_sub">
+									<li>
+										<a asp-controller="Product" asp-action="GetAllShoesBabyLovely" >Đáng yêu</a>
+									</li>
+									<li>
+										<a asp-controller="Product" asp-action="GetAllShoesBabyStyle" >Phong cách</a>
+									</li>
+								</ul>
+								
+							</li>
+							<li>
+								<a asp-controller="Product" asp-action="GetAllShoeSporst">
+									GIÀY THỂ THAO 
+								</a>
+							</li>
+							<li>
+								<a asp-controller="Product" asp-action="GetAllShoesCs">
+									GIÀY CÔNG SỞ
+								</a>
+							</li>
+							<li class="control_search">
+								<a href="javascript:void(0)">
+									<i class="fas fa-search"></i>
+								</a>
+							</li>
+						</ul>
+					</div>
+
+					<div class="col-md-2">
+						<ul class="ul_main justify-content-end">
+							<li>
+								<a asp-controller="OrderDetals" asp-action="CartCustomer">
+									<i class="fas fa-ambulance"></i>
+								</a>
+							</li>
+							<li>
+								<a  asp-controller="Cart" asp-action="Index">
+									<i class="fas fa-shopping-cart"></i>
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="search">
+					<div class="row justify-content-center">
+						<div class="col-md-12">
+							<form asp-action="Search" method="get" asp-controller="Product" class="form-search" >
+								<div class="form-group">
+									<input class="form-control" type="text" placeholder="Tìm kiếm"  name="input"  />
+									<button class="btn-search" type="submit">
+										<i class="fas fa-search"></i>
+									</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</nav>
+		
+		<section class="banner-top">
+			<div class="owl-carousel owl-theme" id="main_slide">
+				<div class="item">
+					<div class="banner">
+						<div class="img-banner">
+							<img src="~/Frontend/images/banner-top-01.jpg" alt="">
+						</div>
+					</div>
+				</div>
+				<div class="item">
+					<div class="banner">
+						<div class="img-banner">
+							<img src="~/Frontend/images/banner-top-02.jpg" alt="">
+						</div>
+					</div>
+				</div>
+				<div class="item">
+					<div class="banner">
+						<div class="img-banner">
+							<img src="~/Images/banner-6.jpg" alt="">
+						</div>
+					</div>
+				</div>
+				<div class="item">
+					<div class="banner">
+						<div class="img-banner">
+							<img src="~/Images/banner-5.jpg" alt="">
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</section>
+
+		
+@RenderBody()
+
+<footer class="footer">
+<div class="container p-0">
+<div class="top-footer">
+	<div class="row">
+		<div class="col-md-3">
+			<h3 class="title">
+				Trợ giúp
+			</h3>	
+			<div class="list-link">
+				<ul>
+					<li>
+						<a href="#">
+							<i class="fas fa-chevron-right"></i>
+							Trạng thái đơn hàng
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<i class="fas fa-chevron-right"></i>
+							Hình thức giao hàng
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<i class="fas fa-chevron-right"></i>
+							Hình thức thanh toán
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<i class="fas fa-chevron-right"></i>
+							Chính sách đổi trả
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<i class="fas fa-chevron-right"></i>
+							Chính sách bảo hành
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<i class="fas fa-chevron-right"></i>
+							Chính sách khách hàng thân thiết
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="col-md-3">
+			<h3 class="title">
+				Thông tin
+			</h3>
+			<div class="list-link">
+				<ul>
+					<li>
+						<a href="#">
+							<i class="fas fa-chevron-right"></i>
+							Tuyển Dụng
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<i class="fas fa-chevron-right"></i>
+							Hệ thống cửa hàng
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<i class="fas fa-chevron-right"></i>
+							Liên hệ hợp tác
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<i class="fas fa-chevron-right"></i>
+							Q&A
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="col-md-3">
+			<h3 class="title">
+				Về chúng tôi
+			</h3>
+			<div class="list-link">
+				<ul>
+					<li>
+						<a href="#">
+							<i class="fas fa-chevron-right"></i>
+							Về Bitis
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<i class="fas fa-chevron-right"></i>
+							Câu chuyện Biti's
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<i class="fas fa-chevron-right"></i>
+							Bước tiến phát triển
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<i class="fas fa-chevron-right"></i>
+							Hoạt Động
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<i class="fas fa-chevron-right"></i>
+							Liên hệ
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="col-md-3">
+			<h3 class="title">
+				Liên hệ với chúng tôi
+			</h3>
+			<div class="list-contact">
+				<ul>
+					<li>
+						<div class="icon">
+							<i class="fas fa-map-marker-alt"></i>
+						</div>
+						<div class="text">
+							<h4 class="title-text">
+								ADDRESS
+							</h4>
+							<div class="dt-txt">
+								Minh Khai - Bắc Từ Liêm - Hà Nội
+							</div>
+						</div>
+					</li>
+
+					<li>
+						<div class="icon">
+							<i class="fas fa-mobile"></i>
+						</div>
+						<div class="text">
+							<h4 class="title-text">
+								PHONE
+							</h4>
+							<div class="dt-txt">
+								0965319086 (24/7 Support Line)
+							</div>
+						</div>
+					</li>
+
+					<li>
+						<div class="icon">
+							<i class="fas fa-fax"></i>
+						</div>
+						<div class="text">
+							<h4 class="title-text">
+								FAX
+							</h4>
+							<div class="dt-txt">
+								(123) 123-4567
+							</div>
+						</div>
+					</li>
+
+					<li>
+						<div class="icon">
+							<i class="fas fa-envelope"></i>
+						</div>
+						<div class="text">
+							<h4 class="title-text">
+								EMAIL
+							</h4>
+							<div class="dt-txt">
+								Chuonghvc2901@gmail.com
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="bot-footer">
+	<div class="row align-items-center justify-content-center">
+		<div class="col-md-4">
+			<ul class="list-ft">
+				<li>
+					<a href="#">
+						Điều khoản
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						Chính sách bảo mật
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						Hướng dẫn sử dụng
+					</a>
+				</li>
+			</ul>
+		</div>
+		<div class="col-md-4">
+			<div class="img-ddk">
+				<img src="~/Frontend/images/Da-dang-ky-bo-cong-thuong.png" alt="">
+			</div>
+		</div>
+		<div class="col-md-4">
+			<div>
+				Giấy CNĐKDN: 0301340497 được cấp ngày 20/01/1992,
+				được sửa đổi lần thứ 20 ngày 28/12/2015 bởi Sở Kế hoạch và Đầu tư TPHCM
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+</footer>
+<button class="back-to-top">
+	<i class="fas fa-chevron-up"></i>
+</button>
+
+<button id="btn_to_form_book">
+	<i class="fas fa-share"></i>
+</button>
+
+
+<div id="fb-root"></div>
+
+
+<div style="position:fixed; z-index:9999999; right:10px; bottom:10px;" class="fb-page" data-tabs="messages" data-href="https://www.facebook.com/Boutique.hanoi" data-width="250" data-height="300" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true" data-show-posts="false"></div>
+
+@*dialog dang nhap*@
+<div class="nen-mo-login"></div>
+<div class="hop-thoai-login">
+	<i style="font-size: 120px; color: #00bfa5; padding-left: 32%; margin-top: 7%; margin-bottom: 5%; color: red" class="fab fa-amazon-pay"></i>
+	<h3 style="color: white;">Vui lòng đăng nhập để tiếp tục </h3>
+</div>
+
+<script src="~/Frontend/js/jquery.js"></script>
+<script src="~/Frontend/js/owl.js"></script>
+<script src="~/Frontend/js/app.js"></script>
+<script src="~/Frontend/js/wow.js"></script>
+
+
+
+<script>
+	new WOW().init();
+</script>
+
+@RenderSection("Scripts", required: false)
+<script>
+	// login logout customer
+	var SessionEmail = '@HttpContextAccessor.HttpContext.Session.GetString("SessionName")';
+	if (SessionEmail == "") {
+		$("#icon-customer").attr("hidden", "");
+		$("#logout-Customer").attr("hidden", "");
+
+	} else {
+		$("#Create_Customer").attr("hidden", "");
+		$("#login_Customer").attr("hidden", "");
+		$("#icon-customer").show();
+	}
+	$(document).ready(function() {
+		$("#contact").click(function() {
+			if (SessionEmail == "") {
+				$('.hop-thoai-login').addClass('hien-ra-login');
+				$('.nen-mo-login').addClass('hien-ra-login');
+				setTimeout(function() {
+						$('.hop-thoai-login').removeClass('hien-ra-login');
+						$('.nen-mo-login').removeClass('hien-ra-login');
+					},
+					1500);
+			} else {
+				window.location.href = "/home/contact";
+			}
+			
+		});
+	});
+		
+</script>
+<script>(function(d, s, id) {
+	var js, fjs = d.getElementsByTagName(s)[0];
+	if (d.getElementById(id)) return;
+	js = d.createElement(s); js.id = id;
+	js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.5";
+	fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+</script>
+</body>
+
+</html>
+

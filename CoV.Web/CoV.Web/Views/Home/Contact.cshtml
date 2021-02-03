@@ -1,0 +1,218 @@
+﻿@using CoV.Service.DataModel
+@model CoV.Service.DataModel.ContactViewModel
+@inject IHttpContextAccessor HttpContextAccessor
+@{
+    ViewBag.Title = "title";
+    Layout = "_FrontEndLayout";
+    var customer = (CustomerViewModel) ViewBag.customer;
+}
+
+<style>
+    .select-style {
+        border: 1px solid #ccc;
+        width: 120px;
+        border-radius: 3px;
+        overflow: hidden;
+        /*background: #fafafa url("/Images/Bitis_Hunter.jpg") no-repeat 90% 50%;*/
+    }
+
+    .select-style select {
+        padding: 5px 8px;
+        width: 130%;
+        border: none;
+        box-shadow: none;
+        background: transparent;
+        background-image: none;
+        -webkit-appearance: none;
+    }
+
+    .select-style select:focus { outline: none; }
+</style>
+
+<section class="breadcrumb">
+    <div class="container p-0">
+        <div class="col-md-12">
+            <ul>
+                <li>
+                    <a asp-action="Home" asp-controller="Home">
+                        Trang chủ
+                    </a>
+                </li>
+                <li>
+                    <a asp-action="Home" asp-controller="Home">
+                        Liên hệ chúng tôi
+                    </a>
+                </li>
+                <li>
+                    Hệ thống TULI STORE
+                </li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<section class="content-contact mt-2" id="form_book">
+    <div class="container p-0">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="form-contact">
+                    <h2 class="title">
+                        Gửi tin nhắn cho chúng tôi
+                    </h2>
+                    <form asp-action="Contact"  asp-controller="Home" method="post" class="mt-2">
+                        <div class="form-group">
+                            <input class="form-control" type="text" placeholder="Họ và tên"  value="@customer.FirstName  @customer.LastName">
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" type="text" placeholder="Email" value="@customer.Email" />
+                        </div>
+
+                        <div class="form-group">
+                            <input class="form-control" type="text" placeholder="Số điện thoại" value="@customer.PhoneNumber" />
+                        </div>
+                        @* <div class="form-group"> *@
+                        @* 	<input class="form-control" type="text" placeholder="Số điện thoại" /> *@
+                        @* </div> *@
+                        <div class="form-group">
+                            <textarea class="w-100" rows="5" placeholder="Lời nhắn" asp-for="Information"></textarea>
+                        </div>
+                        <div class="form-group text-center">
+                            <button type="submit" id="btn-open" class="btn-blue">
+                                Gửi liên hệ
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="area-contact ">
+                    <h2 class="title">
+                        HỆ THỐNG TULI STORE
+                    </h2>
+                    <div class="sub-title">
+                        Nếu bạn có câu hỏi gì hãy lên hệ với chúng tôi, mỗi câu hỏi của các bạn giúp chúng tôi hoàn thiện hơn
+                    </div>
+                    <div class="list-area">
+                        <div class="item">
+                            <div class="icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="txt-item">
+                                <h3 class="title-item">
+                                    ADDRESS:
+                                </h3>
+                                <div class="sub-title">
+                                    Đại học Công nghiệp - Bắc Từ Liêm - Hà Nội
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="item">
+                            <div class="icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="txt-item">
+                                <h3 class="title-item">
+                                    EMAIL:
+                                </h3>
+                                <div class="sub-title">
+                                    Haui@gmail.com
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="item">
+                            <div class="icon">
+                                <i class="fas fa-mobile"></i>
+                            </div>
+                            <div class="txt-item">
+                                <h3 class="title-item">
+                                    PHONE
+                                </h3>
+                                <div class="sub-title">
+                                    +0123 456 789
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="social">
+                        <ul>
+                            <li>
+                                <a href="https://www.facebook.com/chuonghvc2901">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://www.facebook.com/chuonghvc2901">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://www.facebook.com/chuonghvc2901">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://www.facebook.com/chuonghvc2901">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="map">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2 class="title">
+                        Bản đồ
+                    </h2>
+                    <div class="local-map">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d59587.977854466706!2d105.8019443916433!3d21.022736016347025!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ab9bd9861ca1%3A0xe7887f7b72ca17a9!2zSMOgIE7hu5lpLCBIb8OgbiBLaeG6v20sIEjDoCBO4buZaSwgVmnhu4d0IE5hbQ!5e0!3m2!1svi!2s!4v1557736661679!5m2!1svi!2s" width="100%" height="400" frameborder="0" style="border: 0" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="nen-mo"></div>
+<div class="hop-thoai">
+    <i style="font-size: 120px; color: #00bfa5; padding-left: 35%; margin-top: 5%; margin-bottom: 5%;" class="far fa-check-circle "></i>
+    <h3 style="color: white;">Sản phẩm được thêm vào giỏ hàng</h3>
+</div>
+
+<div class="nen-mo-login"></div>
+<div class="hop-thoai-login">
+    <i style="font-size: 120px; color: #00bfa5; padding-left: 32%; margin-top: 7%; margin-bottom: 5%; color: red" class="fab fa-amazon-pay"></i>
+    <h3 style="color: white;">Vui lòng đăng nhập để mua hàng </h3>
+</div>
+
+<div class="nen-mo-max"></div>
+<div class="hop-thoai-max">
+    <i style="font-size: 80px; color: #00bfa5; padding-left: 40%; margin-top: 7%; margin-bottom: 5%; color: red" class="fas fa-exclamation-triangle"></i>
+    <h3 style="color: white;">Hiệp tai số lượng không đủ , vui lòng chọn lại </h3>
+</div>
+
+
+@section Scripts
+{
+    <script>
+        var SessionEmail = '@HttpContextAccessor.HttpContext.Session.GetString("SessionName")';
+        $(document).ready(function() {
+            $('.btn-open').on('click',
+                (function(event) {
+                    event.preventDefault();
+                            $('.hop-thoai-max').addClass('hien-ra-max');
+                            $('.nen-mo-max').addClass('hien-ra-max');
+                            setTimeout(function() {
+                                    $('.hop-thoai-max').removeClass('hien-ra-max');
+                                    $('.nen-mo-max').removeClass('hien-ra-max');
+                                },
+                                1500);
+                }));
+        });
+    </script>
+}

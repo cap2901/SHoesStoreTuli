@@ -1,0 +1,561 @@
+﻿@using CoV.Service.DataModel
+@model IEnumerable<CartViewModel>
+@inject IHttpContextAccessor HttpContextAccessor
+@{
+    ViewBag.Title = "title";
+    Layout = "_FrontEndLayout";
+    var product = (ProductViewModel) ViewBag.product;
+    var modelproduct = (List<ProductViewModel>) ViewBag.model;
+    var listImage = (List<ProductDetailsViewModel>) ViewBag.productDetail;
+    var size = (List<ProductDetailsViewModel>) ViewBag.productDetail;
+    var desription = (string) ViewBag.desription;
+    var order = (List<ProductViewModel>) ViewBag.order;
+}
+
+<style>
+    .select-style {
+        border: 1px solid #ccc;
+        width: 120px;
+        border-radius: 3px;
+        overflow: hidden;
+        /*background: #fafafa url("/Images/Bitis_Hunter.jpg") no-repeat 90% 50%;*/
+    }
+
+    .select-style select {
+        padding: 5px 8px;
+        width: 130%;
+        border: none;
+        box-shadow: none;
+        background: transparent;
+        background-image: none;
+        -webkit-appearance: none;
+    }
+
+    .select-style select:focus { outline: none; }
+</style>
+
+<section class="breadcrumb">
+    <div class="container p-0">
+        <div class="col-md-12">
+            <ul>
+                <li>
+                    <a href="#">
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        Giành cho bạn
+                    </a>
+                </li>
+                <li >
+                    <label >@product.Name</label>
+                </li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<section class='detail-product'>
+    <div class='container p-0'>
+        <div class='row'>
+            <div class="col-md-6">
+                <div class="slide-img-detail">
+                    <div id='ninja-slider'>
+                        <div class='slider-inner'>
+                            <ul class='pt-max'>
+                                @foreach (var item in listImage)
+                                {
+                                    <li>
+                                        <a class='ns-img' href="/Images/@item.AvatarDetails"></a>
+                                    </li>
+                                }
+                                <li>
+                                    <a class='ns-img' href="/Images/@product.AvatarDetails"></a>
+                                </li>
+
+                            </ul>
+                            <div class='fs-icon'></div>
+                            <div id='thumbnail-slider'>
+                                <div class='inner'>
+                                    <ul>
+                                        @foreach (var item in listImage)
+                                        {
+                                            <li>
+                                                <a class='thumb' href="/Images/@item.AvatarDetails"></a>
+                                            </li>
+                                        }
+                                        <li>
+                                            <a class='thumb' href="/Images/@product.AvatarDetails"></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class='col-md-6'>
+                <h1 class='name-product'>
+                    <strong>
+                        <b>@product.Name</b>
+                    </strong>
+                </h1>
+                <div class='rate-product'>
+                    <i class='fas fa-star rated'></i>
+                    <i class='fas fa-star rated'></i>
+                    <i class='fas fa-star rated'></i>
+                    <i class='fas fa-star rated'></i>
+                    <i class='fas fa-star rated'></i>
+                </div>
+                <div class='priceNew' style="font-size: 40px; color: red;">
+                    @product.PriceNew
+                </div>
+                <del class="price" style="font-size: 20px; color: black; opacity: 0.5">
+                    @product.Price
+                </del>
+                <div class='summary-product'>
+                    <b>@product.Details</b>
+                </div>
+                <div class='list-code'>
+                    <div class='item-list'>
+                        <b>Mã sản phẩm : <b>@product.Sku</b></b>0010
+                    </div>
+                    <div class='item-list'>
+                        <b>Tình trạng :</b>
+                        <b>còn hàng</b>
+                    </div>
+                    <div class='item-list'>
+                        <b>Thưởng hiệu :</b>
+                        <b> @product.MakerProduct.MakerName</b>
+                    </div>
+                </div>
+                @*<div class='row' style="margin-top: 20px">
+							
+							<div class='col-md-2 p-0' style="text-align: center; margin-top: 5px">
+								<b>Size</b>
+							</div>
+							<div class='col-md-4 p-0'>
+								<div class='form-group qty-product'>
+									<button class='down-qty' onclick="DownSize()">
+										<i class='fas fa-minus'></i>
+									</button>
+									<input  style="color: #ff0000;" class='form-control' id="Size-Shoes" type='number' min="34" max="45" value="34" type='number' step="1" onkeyup=" this.value = this.value.replace(/[^0-9]/g, '')">
+									<button class='up-qty' onclick="UpSize()">
+										<i class='fas fa-plus'></i>
+									</button>
+								</div>
+							</div>
+							<div class='col-md-2 p-0' >
+							<div class='col-md-4 p-0'>
+								</div>
+							</div>
+						</div>*@
+
+                <div class='row' style="margin-top: 20px; margin-bottom: 10px">
+
+                    <div class='col-md-2 p-0' style="text-align: left; margin-top: 5px">
+                        <b>Size</b>
+                    </div>
+                    <div class='col-md-4 p-0'>
+                        <div class="select-style">
+                            <select id="Size-Shoes" style="text-align: center; color: red">
+                                @foreach (var item in size)
+                                {
+                                    <option style="text-align: center; color: red" value="@item.SizeProduct">@item.SizeProduct</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <div class='col-md-2 p-0'>
+                        <div class='col-md-4 p-0'>
+                        </div>
+                    </div>
+                </div>
+
+                <div class='row'>
+                    <div class='col-md-2 p-0' style="margin-top: 5px">
+                        <b>Số lượng:</b>
+                    </div>
+                    <div class='col-md-4 p-0'>
+
+                        <div class='form-group qty-product'>
+                            <button class='down-qty' onclick="DownQuantity()">
+                                <i class='fas fa-minus'></i>
+                            </button>
+                            <input class='form-control' style="color: #ff0000;" id="Number-Shoes" type='number' min="1" value="1" type='number' step="1" onkeyup=" this.value = this.value.replace(/[^0-9]/g, '')">
+                            <button class='up-qty' onclick="UpQuantity()">
+                                <i class='fas fa-plus'></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class='col-md-1 p-0'></div>
+                    <div class='col-md-5 p-0'>
+                        <div style="padding-top: 10px; color: red" id="show-number"></div>
+                    </div>
+                </div>
+
+                <div class='row mt-1'>
+
+                    <div class='col-md-6 p-0 btn-open ' style="text-align: center;">
+                        <a class="buy" id="@product.Id">
+                            <button class='add-to-cart  '>
+                                <i class='fas fa-cart-plus'></i>
+                            </button>
+                        </a>
+                        <span style="">Thêm vào giỏ hàng</span>
+                    </div>
+                    <div class='col-md-6 p-0' style="text-align: left;">
+                        <a asp-controller="Cart" asp-action="Index">
+                            <button type="submit" style="margin-top: 22px; font-size: 22px; background-color: #ff0000" class="btn-danger "> Giỏ hàng</button>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="product-ss">
+<div class="container p-0">
+<div class="row">
+<div class="col-md-12">
+    <h2 class="name-cate">
+        Sản phẩm bán chạy
+    </h2>
+</div>
+<div class="col-md-12">
+    <div class="owl-carousel owl-theme product_slide" id="product_slide_men">
+    @foreach (var item in order)
+    {
+        <div class="item">
+
+            <div class="item-product">
+
+                <div class="img-item">
+                    <a asp-controller="Home" asp-route-id="@item.Id" asp-action="ProductDetail">
+                        <img src="~/Images/@item.AvatarDetails" alt="">
+                    </a>
+                </div>
+                <div class="box-size">
+                    <div class="count-size">
+                        +7 size
+                    </div>
+                    <div class="list-size">
+                        <span>38</span>
+                        <span>39</span>
+                        <span>40</span>
+                        <span>41</span>
+                        <span>42</span>
+                        <span>43</span>
+                        <span>44</span>
+                        <span>45</span>
+                    </div>
+                </div>
+
+                <h3 class="name-product">
+                    <a asp-controller="Home" asp-route-id="@item.Id" asp-action="ProductDetail" >
+                        @item.Name
+                    </a>
+                </h3>
+                <div class="price-product">
+                    <span>299.000 đ</span>
+                    <del>
+                        399.000 đ
+                    </del>
+                </div>
+                <div class="add-to-cart">
+                    <a asp-controller="Home" asp-route-id="@item.Id" asp-action="ProductDetail">
+                        Mua hàng
+                    </a>
+                </div>
+
+
+            </div>
+        </div>
+    }
+    </div>
+</div>
+</div>
+</div>
+</section>
+
+
+<section class='detail-product pb-3'>
+    <div class='container p-0'>
+        <div class='row mt-3'>
+            <div class='col-md-9'>
+                <div class='my-tab info-prod-detail'>
+                    <ul class='title-tab'>
+                        <li>
+                            <a class='active to-tab' data-id='tab-home' href='javascript:void(0)'>Mô tả sản phẩm</a>
+                        </li>
+                        <li>
+                            <a class='to-tab' data-id='tab-about' href='javascript:void(0)'>Thông tin sản phẩm</a>
+                        </li>
+                    </ul>
+                    <div class='txt-tab'>
+                        <div class='item-txt-tab block' id='tab-home'>
+                            <h2>@product.Name </h2>
+                            @desription
+                            <img alt='' src='~/Images/@product.AvatarDetails'>
+                            <h2>Hệ thống TuliStore</h2>
+                            Giày TuliStore chuyên cung cấp các phụ kiện thời trang  cho nam và nữ với kinh nghiệm hơn 20 năm sản xuất giày uy tín trên thị trường các dòng : Giày, Ví, Thắt lưng, Túi xách, Găng Tay, Dây đồng hồ.
+                            Giày dép TuliStore  đã và đang khẳng định vị thế của mình trong lòng phái mạnh bằng chất lượng sản phẩm, đây cũng chính là giá trị cốt lõi và là điều làm TuliStore trở nên khác biệt suốt 20 năm qua cùng với nhiều giải thưởng uy tín trong nước như: Top 5 thương hiệu Việt tiêu dùng; Sản phẩm, dịch vụ vàng Việt Nam…
+                            <img alt='' src='~/Images/img-suutap1-2-min.jpg'>
+                            <ul>
+                                <li>
+                                    Đạt mọi tiêu chí về thể thao
+                                </li>
+                                <li>
+                                    Đẹp với mọi khách hàng, lứa tuổi
+                                </li>
+                                <li>
+                                    Đồng hành trên những chặng đường
+                                </li>
+                            </ul>
+                        </div>
+                        <div class='item-txt-tab' id='tab-about'>
+                            @product.Name <hr></hr>
+                            @desription
+                            <img alt='' src='~/Images/@product.AvatarDetails'>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class='col-md-3'>
+                <div class='side-bar-detail mt-0'>
+                    <div class='blog-related'>
+                        <h3 class='title-bar mt-0'>Sản phẩm tương tự</h3>
+                        <ul>
+                            @foreach (var item in modelproduct)
+                            {
+                                <li class='row'>
+                                    <div class='col-md-4 p-0'>
+                                        <div class='img-related'>
+                                            <a asp-controller="Home" asp-route-id="@item.Id" asp-action="ProductDetail">
+                                                <img alt='' src='~/Images/@item.AvatarDetails'>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class='col-md-8'>
+                                        <div class='info-related'>
+                                            <h3 class='name-related'>
+                                                <a asp-controller="Home" asp-route-id="@item.Id" asp-action="ProductDetail">
+                                                    @item.Name
+                                                </a>
+                                            </h3>
+                                            <div class='price-bar'>
+                                                <b class='color-danger' style="color: #ff0000">@item.PriceNew đ</b>
+                                                <del>@item.Price đ</del>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                    <div class='blog-tags'>
+                        <h3 class='title-bar'>Từ khóa</h3>
+                        <ul>
+                            <li>
+                                <a href='#'>Giày đẹp</a>
+                            </li>
+                            <li>
+                                <a href='#'>Giày trẻ chung</a>
+                            </li>
+                            <li>
+                                <a href='#'>
+                                    Giày công sở
+                                </a>
+                            </li>
+                            <li>
+                                <a href='#'>Giày thịnh hành</a>
+                            </li>
+                            <li>
+                                <a href='#'>Giày tiêu dùng</a>
+                            </li>
+                            <li>
+                                <a href='#'>
+                                    Giày cho trẻ em
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="nen-mo"></div>
+<div class="hop-thoai">
+    <i style="font-size: 120px; color: #00bfa5; padding-left: 35%; margin-top: 5%; margin-bottom: 5%;" class="far fa-check-circle "></i>
+    <h3 style="color: white;">Sản phẩm được thêm vào giỏ hàng</h3>
+</div>
+
+<div class="nen-mo-login"></div>
+<div class="hop-thoai-login">
+    <i style="font-size: 120px; color: #00bfa5; padding-left: 32%; margin-top: 7%; margin-bottom: 5%; color: red" class="fab fa-amazon-pay"></i>
+    <h3 style="color: white;">Vui lòng đăng nhập để mua hàng </h3>
+</div>
+
+<div class="nen-mo-max"></div>
+<div class="hop-thoai-max">
+    <i style="font-size: 80px; color: #00bfa5; padding-left: 40%; margin-top: 7%; margin-bottom: 5%; color: red" class="fas fa-exclamation-triangle"></i>
+    <h3 style="color: white;">Hiệp tai số lượng không đủ , vui lòng chọn lại </h3>
+</div>
+
+@section Scripts
+{
+    <script src="~/Frontend/js/thumbnail-slider.js"></script>
+    <script src="~/Frontend/js/ninja-slider.js"></script>
+    <script>
+        var SessionEmail = '@HttpContextAccessor.HttpContext.Session.GetString("SessionName")';
+        $(document).ready(function() {
+            $('.btn-open').on('click',
+                (function(event) {
+                    event.preventDefault();
+                    if (SessionEmail == "") {
+                        $('.hop-thoai-login').addClass('hien-ra-login');
+                        $('.nen-mo-login').addClass('hien-ra-login');
+                        setTimeout(function() {
+                                $('.hop-thoai-login').removeClass('hien-ra-login');
+                                $('.nen-mo-login').removeClass('hien-ra-login');
+                            },
+                            1500);
+                    } else {
+                        var quantity = parseInt($("#Number-Shoes").val());
+                        if ($("#Number-Shoes").attr("max") < quantity) {
+                            $('.hop-thoai-max').addClass('hien-ra-max');
+                            $('.nen-mo-max').addClass('hien-ra-max');
+                            setTimeout(function() {
+                                    $('.hop-thoai-max').removeClass('hien-ra-max');
+                                    $('.nen-mo-max').removeClass('hien-ra-max');
+                                },
+                                1500);
+                        } else {
+                            $('.hop-thoai').addClass('hien-ra');
+                            $('.nen-mo').addClass('hien-ra');
+                            setTimeout(function() {
+                                    $('.hop-thoai').removeClass('hien-ra');
+                                    $('.nen-mo').removeClass('hien-ra');
+                                },
+                                1000);
+                        }
+
+                    }
+                }));
+        });
+
+        //mua hang luong don hang
+        $(document).ready(function() {
+            $(".buy").off('click').on('click',
+                function(e) {
+                    var id = $(this).attr("id");
+                    var size = parseInt($("#Size-Shoes").val());
+                    var quantity = parseInt($("#Number-Shoes").val());
+                    e.preventDefault();
+                    $.ajax({
+                        url: '@Url.Action("Buy", "Cart")',
+                        type: "GET",
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        data: {
+                            id: id,
+                            size: size,
+                            quantity: quantity
+                        },
+                        async: true,
+                        cache: false,
+                        success: function(resuls) {
+
+
+                        }
+                    });
+                });
+        });
+
+        $(document).ready(function() {
+            $("#Size-Shoes").off('keyup click change mouseleave').on('keyup click change mouseleave',
+                function(e) {
+                    e.preventDefault();
+                    var size = parseInt($(this).val());
+                    var id = parseInt($(".buy").attr("id"));
+                    if (size >= 34 && size <= 45) {
+                        $.ajax({
+                            url: '@Url.Action("CkeckNumber", "Cart")',
+                            type: "GET",
+                            contentType: "application/json; charset=utf-8",
+                            dataType: "json",
+                            data: {
+                                id: id,
+                                size: size
+                            },
+                            async: true,
+                            cache: false,
+                            success: function(result) {
+                                $("#show-number").text("Còn " + result + " Sản phẩm có sẵn");
+                                $("#Number-Shoes").attr("max", parseInt(result));
+                            }
+                        });
+                    }
+                });
+        });
+
+
+        $(document).ready(function() {
+            $("#Number-Shoes").off('keyup click change mouseleave').on('keyup click change mouseleave',
+                function(e) {
+                    e.preventDefault();
+                    var size = parseInt($("#Size-Shoes").val());
+                    var id = parseInt($(".buy").attr("id"));
+                    if (size >= 34 && size <= 45) {
+                        $.ajax({
+                            url: '@Url.Action("CkeckNumber", "Cart")',
+                            type: "GET",
+                            contentType: "application/json; charset=utf-8",
+                            dataType: "json",
+                            data: {
+                                id: id,
+                                size: size
+                            },
+                            async: true,
+                            cache: false,
+                            success: function(result) {
+                                $("#show-number").text("Còn " + result + " Sản phẩm có sẵn");
+                                $("#Number-Shoes").attr("max", parseInt(result));
+                            }
+                        });
+                    }
+                });
+        });
+
+
+        function UpQuantity() {
+            var quantity = parseInt($('#Number-Shoes').val());
+            var max = $('#Number-Shoes').attr('max');
+            if (quantity >= 0 && quantity < max) {
+                $('#Number-Shoes').val(quantity + 1);
+            }
+        }
+
+        function DownQuantity() {
+            var quantity = parseInt($('#Number-Shoes').val());
+            if (quantity > 0) {
+                $('#Number-Shoes').val(quantity - 1);
+            }
+        }
+
+
+        //format jquery format number to currency
+
+        var input = $(".priceNew").html();
+        var output = parseInt(input).toLocaleString();
+        $(".priceNew").text(output + " VND");
+        var input = $(".price").html();
+        var output = parseInt(input).toLocaleString();
+        $(".price").text(output + " VND");
+
+    </script>
+}

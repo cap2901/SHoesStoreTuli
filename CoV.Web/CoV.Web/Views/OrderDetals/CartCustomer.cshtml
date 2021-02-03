@@ -1,0 +1,94 @@
+﻿@using System.Drawing
+@using CoV.Service.DataModel
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_FrontEndLayout";
+    var orderDetails = (IEnumerable<OrderDetailsViewModel>) ViewBag.list;
+ 
+}
+
+<div class="nen-mo"></div>
+<div class="hop-thoai">
+    <i style="font-size: 120px; color: #00bfa5; padding-left: 35%; margin-top: 5%; margin-bottom: 5%; opacity: 1;" class="far fa-check-circle "></i>
+    <h3 style="color: white;">Sản phẩm được thêm vào giỏ hàng</h3>
+</div>
+
+
+<section class='cart'>
+    <div class='container p-0'>
+        <div class='row'>
+            <div class="col-md-12">
+                <h2 class="title-page">
+                   Trạng thái đơn hàng  của @Context.Session.GetString("SessionName")
+                </h2>
+            </div>
+            <div class='col-md-12'>
+                <div class='list-cart table'>
+
+                    <table class="text-center">
+                        <thead>
+                        <tr>
+                            <th>Số điện thoại</th>
+                            <th>Tên khách hàng</th>
+                            <th>Tên sản phẩm</th>
+                            <th>Số lượng</th>
+                            <th>Thành tiền</th>
+                            <th>Trạng thái</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in orderDetails)
+                            {
+                                <tr class='item-cart' id="cart_customer">
+                                    <td>
+                                        @item.PhoneNumber
+                                    </td>
+                                    <td>
+                                        @item.NameCustomer
+                                    </td>
+                                    <td >
+                                        @foreach (var order in @item.OrderViewModels)
+                                        {
+                                            <p>@order.Product.Name
+                                                -Size: @order.Size - @order.Quantity SP -  @order.TotalPrice VND </p>
+                                        }
+                                    </td>
+                                    
+                                    <td class='w-200px'>
+                                        @item.NumberProduct Sản phẩm
+                                    </td>
+                                    <td >  @item.TotalMoney VND</td>
+                                    <td>
+                                        <p style="color: red"> @item.StatusOrder.Status</p>
+                                    </td>
+                               
+                                </tr>
+                            }
+                      
+                        <tr>
+                            
+                           
+                            <td class='text-right' colspan='5'>
+                                <div class='row justify-content-end'>
+                                    <a class='to-checkout'  asp-action="Home" asp-controller="Home">
+                                        Tiếp tục mua hàng
+                                    </a>
+                                </div>
+                            </td>
+
+                        </tr>
+                      
+                     
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts
+{
+   
+}

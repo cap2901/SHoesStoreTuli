@@ -1,0 +1,124 @@
+﻿@using CoV.Service.DataModel
+@model  IEnumerable<CoV.Service.DataModel.OrderDetailsViewModel>
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_LayoutOrderLoading";
+    var list = (List<OrderViewModel>)ViewBag.list;
+}
+<div class="row">
+    <div class="col-md-12">
+        <!-- The time line -->
+        <div class="timeline">
+            <!-- timeline time label -->
+            <!-- /.timeline-label -->
+            <!-- timeline item -->
+            <div>
+                <i class="fas fa-cart-plus"></i>
+                <div class="timeline-item">
+                    <h3 class="timeline-header">
+                        <a href="#">Chờ thanh toán</a>
+                    </h3>
+                    <div class="timeline-body">
+                        <section class="product-ss">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="owl-carousel owl-theme product_slide" id="product_slide_men">
+                                        <div class="item">
+                                            <div class="item-product">
+                                              
+                                                    <div class="img-item">
+                                                        <a asp-controller="Home" asp-action="ProductDetail">
+                                                            <img src="~/Images/0d293621-7c15-4c0e-a820-6198009f6015_5d828e8d6f24eb1eb5148f5c.jpg" alt="">
+                                                        </a>
+                                                    </div>
+                                                    <h3 class="name-product">
+                                                        <a >
+                                                           
+                                                        </a>
+                                                    </h3>
+                                                    <div class="price-product">
+                                                        <span ></span>
+                                                    </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </section>
+                    </div>
+                </div>
+            </div>
+            <!-- END timeline item -->
+            <!-- timeline item -->
+            <div>
+                <i class="fas fa-truck bg-blue"></i>
+                <div class="timeline-item">
+                    <h3 class="timeline-header">
+                        <a href="#">Chờ lấy hàng</a>
+                    </h3>
+                    <div class="timeline-body">
+                        a
+                    </div>
+                </div>
+            </div>
+            <!-- END timeline item -->
+
+            <!-- timeline item -->
+            <div>
+                <i class="fas fa-shipping-fast bg-blue"></i>
+
+                <div class="timeline-item">
+                    <h3 class="timeline-header">
+                        <a href="#">Đang giao</a>
+                    </h3>
+                    <div class="timeline-body">
+                        a
+                    </div>
+                </div>
+            </div>
+            <!-- END timeline item -->
+
+            <!-- timeline item -->
+            <div>
+                <i class="fab fa-usps bg-purple"></i>
+                <div class="timeline-item">
+                    <h3 class="timeline-header">
+                        <a href="#">Đã giao</a>
+                    </h3>
+                    <div class="timeline-body">
+                        a
+                    </div>
+                </div>
+            </div>
+            <!-- END timeline item -->
+            <!-- timeline item -->
+
+            @* <div> *@
+            @*     <i class="fa fa-camera bg-purple"></i> *@
+            @*     <div class="timeline-item"> *@
+            @*         <h3 class="timeline-header"> *@
+            @*             <a href="#">Ảnh sản phẩm</a> *@
+            @*         </h3> *@
+            @*         <div class="timeline-body"> *@
+            @*             <img src="http://placehold.it/150x100" alt="..."> *@
+            @*             <img src="http://placehold.it/150x100" alt="..."> *@
+            @*             <img src="http://placehold.it/150x100" alt="..."> *@
+            @*             <img src="http://placehold.it/150x100" alt="..."> *@
+            @*             <img src="http://placehold.it/150x100" alt="..."> *@
+            @*         </div> *@
+            @*     </div> *@
+            @* </div> *@
+            <!-- END timeline item -->
+            <!-- timeline item -->
+
+            <!-- END timeline item -->
+            <div>
+                <i class="fas fa-clock bg-gray"></i>
+            </div>
+        </div>
+    </div>
+    <!-- /.col -->
+</div>

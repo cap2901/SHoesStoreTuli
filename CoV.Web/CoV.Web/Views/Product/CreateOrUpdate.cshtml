@@ -1,0 +1,140 @@
+﻿@model CoV.Service.DataModel.ProductViewModel
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_AdminLayout";
+}
+
+<div class="row">
+    <!-- left column -->
+    <div class="col-md-12">
+        <!-- general form elements -->
+        <div class="card card-primary">
+            <div class="card-header">
+                <h3 class="card-title">Tạo/Cập nhật danh mục sản phẩm </h3>
+            </div>
+            <!-- /.card-header -->
+            <!-- form start -->
+            <form enctype="multipart/form-data"  asp-controller="Product" asp-action="CreateOrUpdate" method="post">
+                <div class="card-body">
+                     <div class="row">
+                    <div class="col-5">
+                        <div class="form-group">
+                            <label >Tên sản phẩm </label>
+                            <input class="form-control" placeholder="Tên sản phẩm" required asp-for="Name" >
+                        </div>
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                        
+                        <div class="form-group">
+                            <label >Mã sản phẩm</label>
+                            <input class="form-control" placeholder="Mã " asp-for="Sku" >
+                            <div asp-validation-summary="ModelOnly" class="text-danger"  style="text-align: center"></div>	
+                        </div>
+                        <span asp-validation-for="Sku" class="text-danger"></span>
+                        <div class="form-group">
+                            <label >Giá sản phẩm</label>
+                            <input class="form-control" placeholder="Giá"   min="0" asp-for="Price"  min="1" type='number' step="1" onkeyup=" this.value = this.value.replace(/[^0-9]/g, '')">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label >Giá khuyến mại</label>
+                            <input class="form-control" placeholder="Giá"  min="0" asp-for="PriceNew" min="0" min="1" type='number' step="1" onkeyup=" this.value = this.value.replace(/[^0-9]/g, '')">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label >Mô tả sản phẩm</label>
+                            @* <input class="form-control" placeholder="Mô tả"  > *@
+                            <textarea  placeholder="Mô tả sản phẩm"
+                          style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;" asp-for="Details"></textarea>
+                        </div> 
+                        <span asp-validation-for="Details" class="text-danger"></span>
+                        <div class="form-group">
+                            <label >Hãng sản phẩm</label>
+                            <select class="custom-select" asp-for="MakerProductId">
+
+                                @foreach (var item in Model.MakerProductViewModels)
+                                {
+                                    <option value="@item.Id">@item.MakerName</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label >Giới tính </label>
+                            <select class="custom-select" asp-for="GenderProductId">
+
+                                @foreach (var item in Model.GenderViewModels)
+                                {
+                                    <option value="@item.Id">@item.GenderName</option>
+                                }
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label >Thể loại </label>
+                            <select class="custom-select" asp-for="CategoryProductId">
+
+                                @foreach (var item in Model.CategoryProductViewModels)
+                                {
+                                    <option value="@item.Id">@item.CategoryName</option>
+                                }
+                            </select>
+                        </div>
+
+                    </div>
+
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label>Hình ảnh mô tả</label>
+                            <div class="input-group ">
+                                <div class="custom-file">
+                                    <input id="imgInp" type="file" class="custom-file-input" id="validatedCustomFile" class="rounded-pill" asp-for="PhotoPath">
+                                    <label class="custom-file-label" for="validatedCustomFile">Chọn ảnh...</label>
+                                    <div class="invalid-feedback">Example invalid custom file feedback</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-12">
+                                <div >
+                                    <input class="custom-file-input" asp-for="AvatarDetails">
+                                    <img id="blah" src="~/Images/@Model.AvatarDetails" alt="Responsive image" class="rounded-pill"/>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <div style="text-align: center">
+                            <button type="submit" class="btn btn-primary">Tạo/Cập nhật danh mục </button>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="col-md-6"></div>
+</div>
+
+@section Scripts
+{
+    <script>
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    $('#blah').attr('src', e.target.result);
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        };
+
+        $("#imgInp").change(function() {
+            readURL(this);
+        });
+    </script>
+}
